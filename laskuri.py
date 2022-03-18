@@ -4,6 +4,11 @@ import os
 print("Valitse: Suoran piirtäminen = P, Suoran yhtälön määritys = Y")
 valittu = input("")
 
+def jaollinen(jaettava, jakaja):
+    if jaettava%jakaja == 0:
+        return True
+    else:
+        return False
 
 def juttu():
     akseli = input("Mikä akseli: ")
@@ -31,14 +36,28 @@ def yhmä():
     deltay = int(input("ΔY: "))
     b = int(input("Vakiotermi: "))
 
-
     lasku = int(deltay / deltax)
-    if b > 0:
-        print("y =",lasku,"x","+",b)
-    elif b < 0:
-        print("y =",lasku,"x","+",b)
-    else:
-        print("y =", lasku,"x") 
+
+    if jaollinen(deltay, deltax) == True:
+        if b != 0:
+            print("y =",lasku,"x","+",b)
+        elif b == 0:
+            print("y =",lasku,"x")
+    elif jaollinen(deltay, deltax) == False:
+        if b != 0:
+            print('  ',deltay)
+            print('  ---  + ',b)
+            print('  ',deltax)
+        elif b == 0:
+            print('  ',deltay)
+            print('  ---  ')
+            print('  ',deltax)
+
+def testi():
+    numero = int(input('eka'))
+    toinen = int(input('toka'))
+    tulos = jaollinen(numero, toinen)
+    print(tulos)
 
 
 numero = 1
@@ -47,14 +66,12 @@ if valittu.__contains__("p"):
     while numero == 1:
         juttu()
         time.sleep(1)
-        komento = input('Paina ENTER jatkaaksesi.')
-        komento = "clear"
-        os.system(komento)
+        input('Paina ENTER jatkaaksesi.')
+        os.system('clear')
 
 if valittu.__contains__("y"):
     while numero == 1:
         yhmä()
         time.sleep(1)
-        komento = input('Paina ENTER jatkaaksesi.')
-        komento = "clear"
-        os.system(komento)
+        input('Paina ENTER jatkaaksesi.')
+        os.system('clear')
